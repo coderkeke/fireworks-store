@@ -1,11 +1,34 @@
 <template>
-  <div>我是HOME</div>
+  <div class="home-container">
+    <!-- 头部 -->
+    <TopNavBar />
+    <!-- 轮播图 -->
+    <Swipe />
+    <!-- 搜索 -->
+    <SearchBox />
+    <!-- 图片展示 -->
+    <ImageList />
+    <!-- 推荐产品 -->
+    <RecommendList />
+  </div>
 </template>
 
 <script>
+import TopNavBar from "./components/TopNavBar.vue";
+import Swipe from "./components/Swipe.vue";
+import SearchBox from "./components/SearchBox.vue";
+import ImageList from "./components/ImageList.vue";
+import RecommendList from "./components/RecommendList.vue";
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    TopNavBar,
+    Swipe,
+    SearchBox,
+    ImageList,
+    RecommendList
+  }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

@@ -2,8 +2,18 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "./config/vant/vant";
 
+//vant--------------------------------------------
+import Vant from "vant";
+
+import "vant/lib/index.less";
+Vue.use(Vant);
+
+//样式初始化--------------------------------------------
+import "@/assets/css/normalize.css";
+
+//amfe-flexible插件-------------------------------------------
+import "amfe-flexible";
 
 Vue.config.productionTip = false;
 

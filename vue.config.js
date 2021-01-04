@@ -1,6 +1,5 @@
 const path = require("path");
 const debug = process.env.NODE_ENV !== "production";
-console.log(process.env.NODE_ENV);
 
 module.exports = {
   //  基本路径
@@ -21,13 +20,13 @@ module.exports = {
   productionSourceMap: true,
   //webpack配置，值位对象时会合并配置，为方法时会改写配置--------------------------------------------
   configureWebpack: config => {
-    if (debug) {
-      // 开发环境配置
-      config.devtool = "cheap-module-eval-source-map";
-    } else {
-      // 生产环境配置
-      console.log("生产");
-    }
+    // if (debug) {
+    //   // 开发环境配置
+    //   config.devtool = "cheap-module-eval-source-map";
+    // } else {
+    //   // 生产环境配置
+    //   config.devtool = "cheap-module-source-map";
+    // }
 
     Object.assign(config, {
       // 开发生产共同配置，新增一些别名设置
@@ -56,6 +55,18 @@ module.exports = {
         ws: true,
         pathRewrite: {
           "^/api": ""
+        }
+      }
+    }
+  },
+
+  css: {
+    loaderOptions: {
+      less: {
+        // 若 less-loader 版本小于 6.0，请移除 lessOptions 这一级，直接配置选项。
+        modifyVars: {
+          // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
+          hack: `true; @import "${path.resolve(__dirname, "src/assets/css/var.less")}";`
         }
       }
     }
