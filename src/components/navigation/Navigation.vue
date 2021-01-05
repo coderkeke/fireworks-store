@@ -1,7 +1,7 @@
 <template>
-  <van-tabbar v-model="active" @change="onChange">
+  <van-tabbar v-model="active" route @change="onChange">
     <van-tabbar-item v-for="(tab, index) of tabList" :key="tab.to" :to="tab.to">
-      <span class="tab-title" :class="{active: active === index}">{{ tab.title }}</span>
+      <span class="tab-title">{{ tab.title }}</span>
       <template #icon="props">
         <div class="tab-item" :class="props.active ? 'isActive' : ''">
           <div class="img-box">
@@ -69,11 +69,27 @@ export default {
       this.active = index;
       console.log(index);
     }
+  },
+  beforeMount(){
+    console.log(this.$route);
+    // 根据不同策略提前锁定当前选中
+    for (let i = 0; i < this.tabList.length; i++) {
+      if (this.$route.path === this.tabList[i].to) {
+        this.active = i;
+        break;
+      }
+    }
+  },
+  mounted() {
+    console.log(this.active)
   }
 };
 </script>
 
 <style lang="less" scoped>
+  .van-tabbar-item--active {
+    color: #FF4A07;
+  }
 .van-tabbar {
   height: 60px;
   box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.1);
@@ -157,10 +173,10 @@ export default {
       font-size: 12px;
       font-family: PingFang SC;
       font-weight: 500;
-      color: #646464;
+      /*color: #646464;
       &.active {
         color: #FF4A07;
-      }
+      }*/
     }
   }
 }
