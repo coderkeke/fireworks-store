@@ -59,7 +59,10 @@ export default {
     };
   },
   methods: {
-    onChange(index) {}
+    onChange(index) {
+      this.active = index;
+      console.log(index);
+    }
   }
 };
 </script>

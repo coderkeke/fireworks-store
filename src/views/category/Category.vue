@@ -1,10 +1,29 @@
 <template>
-  <div>我是CATEGORY</div>
+  <div class="category-container">
+    <!-- 头部 -->
+    <TopNavBar />
+    <!-- 轮播图 -->
+    <Swipe />
+    <!-- 搜索 -->
+    <SearchBox />
+    <!-- 分类列表-->
+    <CategoryList />
+  </div>
 </template>
 
 <script>
+import TopNavBar from "./components/TopNavBar.vue";
+import Swipe from "./components/Swipe.vue";
+import SearchBox from "./components/SearchBox.vue";
+import CategoryList from "./components/CategoryList.vue";
 export default {
-  name: "Category"
+  name: "Category",
+  components: {
+    TopNavBar,
+    Swipe,
+    SearchBox,
+    CategoryList
+  }
 };
 </script>
 
