@@ -1,16 +1,18 @@
 <template>
   <van-tabbar v-model="active" @change="onChange">
-    <van-tabbar-item v-for="tab of tabList" :key="tab.to" :to="tab.to">
+    <van-tabbar-item v-for="(tab, index) of tabList" :key="tab.to" :to="tab.to">
+      <span class="tab-title" :class="{active: active === index}">{{ tab.title }}</span>
       <template #icon="props">
         <div class="tab-item" :class="props.active ? 'isActive' : ''">
           <div class="img-box">
             <div class="img-bg">
+              <!-- 原版写法存在问题, 这种写法, 每点击一次都会请求一次图片 -->
               <img :src="props.active ? tab.icon.active : tab.icon.inactive" />
             </div>
           </div>
         </div>
       </template>
-      <span class="tab-title" :style="{ color: tab.activeColor }">{{ tab.title }}</span>
+      
     </van-tabbar-item>
   </van-tabbar>
 </template>
@@ -25,7 +27,7 @@ export default {
         {
           to: "/home",
           title: "主页",
-          activeColor: "#FF4A07",
+          // activeColor: "#FF4A07",
           icon: {
             active: require("@/assets/img/navigation/home_active.png"),
             inactive: require("@/assets/img/navigation/home.png")
@@ -143,6 +145,9 @@ export default {
       font-family: PingFang SC;
       font-weight: 500;
       color: #646464;
+      &.active {
+        color: #FF4A07;
+      }
     }
   }
 }
