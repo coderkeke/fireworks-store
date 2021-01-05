@@ -10,6 +10,10 @@
               <img :src="props.active ? tab.icon.active : tab.icon.inactive" />
             </div>
           </div>
+          <svg v-if="props.active" fill="#fff" version="1.1" id="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 119 26">
+            <path class="path" d="M120.8,26C98.1,26,86.4,0,60.4,0C35.9,0,21.1,26,0.5,26H120.8z">
+            </path>
+          </svg>
         </div>
       </template>
       
@@ -80,6 +84,13 @@ export default {
 
       .tab-item {
         height: 22px;
+        position: relative;
+        svg {
+          position: absolute;
+          top: 3px;
+          left: 0;
+          z-index: 1;
+        }
         .img-box {
           display: flex;
           justify-content: center;
@@ -87,6 +98,8 @@ export default {
           img {
             width: 22px;
             height: 22px;
+            position: relative;
+            z-index: 2;
           }
         }
       }
