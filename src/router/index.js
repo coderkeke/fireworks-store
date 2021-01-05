@@ -19,11 +19,11 @@ const routes = [
   /**
    *企业介绍-----------------------------------------------
    */
-  { path: "/introduction", name: "Introduction", component: () => "@v/introduction/Introduction.vue" },
+  { path: "/introduction", name: "Introduction", component: () => import("@v/introduction/Introduction.vue") },
   /**
    *联系我们-----------------------------------------------
    */
-  { path: "/contact", name: "Contact", component: () => "@v/contact/Contact.vue" }
+  { path: "/contact", name: "Contact", component: () => import("@v/contact/Contact.vue") }
 ];
 
 const router = new VueRouter({
