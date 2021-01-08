@@ -27,4 +27,8 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.category-container {
+  padding-bottom: 100px;
+}
+</style>

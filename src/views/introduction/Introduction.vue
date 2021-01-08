@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="introduction-container">
     <!-- 头部 -->
     <TopNavBar />
     <!-- 轮播图 -->
@@ -19,4 +19,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.introduction-container {
+  padding-bottom: 100px;
+}
+</style>
