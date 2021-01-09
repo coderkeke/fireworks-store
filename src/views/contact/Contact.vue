@@ -36,14 +36,14 @@
         <span class="contant-text">联系人：刘鹏</span>
       </div>
 
-      <div class="call">
+      <a :href="'tel:' + 15575958599" class="call">
         <img src="@/assets/img/contact/dianhua.png" alt="" />
         <span>拨打电话</span>
-      </div>
-      <div class="navigation">
+      </a>
+      <a href="https://uri.amap.com/marker?position=113.886169,22.96079" class="navigation">
         <img src="@/assets/img/contact/daohang.png" alt="" />
         <span>打开导航</span>
-      </div>
+      </a>
     </div>
   </div>
 </template>
@@ -138,7 +138,7 @@ export default {
       box-shadow: 2px 2px 8px 0px rgba(61, 191, 252, 0.7);
       border-radius: 25px;
 
-      margin: 26px 0;
+      margin: 26px auto;
       & > img {
         width: 27px;
         height: 27px;

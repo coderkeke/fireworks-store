@@ -64,12 +64,13 @@ export default {
     padding-left: 22px;
     &::before {
       content: "";
-      width: 25px;
-      height: 52px;
+      width: 70px;
+      height: 70px;
       background-color: #f6f6f6;
-      border-radius: 0 52px 52px 0;
+      // border-radius: 0 61px 61px 0;
+      border-radius: 50%;
       position: absolute;
-      left: -12px;
+      left: -56px;
     }
 
     .category-content {

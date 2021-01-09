@@ -15,7 +15,7 @@
               <div class="btn-left">
                 <span>详情</span>
               </div>
-              <div class="btn-right">
+              <div @click="handleVideoPlay" class="btn-right">
                 <span>视频</span>
               </div>
             </div>
@@ -56,7 +56,12 @@
 
 <script>
 export default {
-  name: "productList"
+  name: "productList",
+  methods: {
+    handleVideoPlay() {
+      this.$router.push({ name: "VideoPlay" });
+    }
+  }
 };
 </script>
 
