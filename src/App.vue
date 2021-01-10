@@ -22,6 +22,7 @@ export default {
 
 <style lang="less" scoped>
 #app {
-  margin-bottom: 60px;
+  width: 100%;
+  height: 100vh;
 }
 </style>
