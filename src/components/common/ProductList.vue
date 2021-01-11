@@ -1,7 +1,7 @@
 <template>
   <div class="product-container">
     <div class="product-list">
-      <van-swipe-cell right-width="64">
+      <van-swipe-cell :disabled="disabled" right-width="64">
         <div class="product-item">
           <div class="item-img">
             <van-image radius="5" fit="cover" width="130" height="130" src="https://img.yzcdn.cn/vant/cat.jpeg" />
@@ -12,7 +12,7 @@
             <span class="prt-content">含量：1/1</span>
             <span class="prt-price">价格：面议</span>
             <div class="item-btn">
-              <div class="btn-left">
+              <div @click="goProDetail" class="btn-left">
                 <span>详情</span>
               </div>
               <div @click="handleVideoPlay" class="btn-right">
@@ -26,7 +26,7 @@
         </template>
       </van-swipe-cell>
 
-      <van-swipe-cell right-width="64">
+      <van-swipe-cell :disabled="disabled" right-width="64">
         <div class="product-item">
           <div class="item-img">
             <van-image radius="5" fit="cover" width="130" height="130" src="https://img.yzcdn.cn/vant/cat.jpeg" />
@@ -37,7 +37,7 @@
             <span class="prt-content">含量：1/1</span>
             <span class="prt-price">价格：面议</span>
             <div class="item-btn">
-              <div class="btn-left">
+              <div @click="goProDetail" class="btn-left">
                 <span>详情</span>
               </div>
               <div class="btn-right">
@@ -57,9 +57,18 @@
 <script>
 export default {
   name: "productList",
+  props: {
+    disabled: {
+      type: Boolean,
+      default: true
+    }
+  },
   methods: {
     handleVideoPlay() {
       this.$router.push({ name: "VideoPlay" });
+    },
+    goProDetail() {
+      this.$router.push({ name: "ProductDetails" });
     }
   }
 };

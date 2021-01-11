@@ -41,4 +41,8 @@ export default {
   width: 29px;
   height: 29px;
 }
+
+[class*="van-hairline"]::after {
+  border: none;
+}
 </style>

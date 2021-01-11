@@ -28,9 +28,7 @@ export default {
     ImageList,
     RecommendList
   },
-  mounted() {
-    this.payOrder();
-  },
+  mounted() {},
   methods: {}
 };
 </script>

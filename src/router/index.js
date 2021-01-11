@@ -62,6 +62,28 @@ const routes = [
     },
     name: "VideoPlay",
     component: () => import("@v/videoPlay/VideoPlay.vue")
+  },
+  /**
+   *产品详情-----------------------------------------------
+   */
+  {
+    path: "/productDetails",
+    meta: {
+      isNavigation: false
+    },
+    name: "ProductDetails",
+    component: () => import("@v/productDetails/ProductDetails.vue")
+  },
+  /**
+   *产品总列表-----------------------------------------------
+   */
+  {
+    path: "/proAllList",
+    meta: {
+      isNavigation: false
+    },
+    name: "ProAllList",
+    component: () => import("@v/proAllList/ProAllList.vue")
   }
 ];
 
