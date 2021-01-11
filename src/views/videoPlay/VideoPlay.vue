@@ -48,11 +48,16 @@ export default {
           url: "https://video.pearvideo.com/mp4/third/20201124/cont-1708555-15126082-104309-hd.mp4",
           name: "懂咖啡，也懂你的小心思"
         }
-      ]
+      ],
+      // 数据uuid
+      uuid: ""
     };
   },
 
   created() {
+    const { shopUuid, uuid, typeName } = this.$route.query;
+    console.log(this.$route);
+    this.uuid = uuid;
     this.initVideoList();
   },
   methods: {
