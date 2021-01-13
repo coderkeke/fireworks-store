@@ -1,7 +1,9 @@
 <template>
   <div class="home-container">
     <!-- 头部 -->
-    <TopNavBar />
+    <div class="top-nav-bar">
+      <TopNavBar />
+    </div>
     <!-- 轮播图 -->
     <Swipe />
     <!-- 搜索 -->
@@ -36,5 +38,19 @@ export default {
 <style lang="less" scoped>
 .home-container {
   padding-bottom: 100px;
+
+  padding-top: 60px;
+  &::before {
+    content: "";
+    display: table;
+  }
+
+  .top-nav-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 999;
+  }
 }
 </style>

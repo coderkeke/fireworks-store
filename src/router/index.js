@@ -88,7 +88,15 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (to.path == "/productDetails" || to.path == "/videoPlay") {
+      // return 期望滚动到哪个的位置
+      return { x: 0, y: 0 };
+    } else {
+      return savedPosition;
+    }
+  }
 });
 
 export default router;

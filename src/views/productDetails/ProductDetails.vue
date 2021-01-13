@@ -56,6 +56,11 @@ export default {
 .product-detail {
   background: #ffffff;
   height: 100vh;
+  padding-top: 60px;
+  &::before {
+    content: "";
+    display: table;
+  }
 
   .top-nav-bar {
     position: fixed;

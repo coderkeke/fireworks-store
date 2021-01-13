@@ -7,13 +7,14 @@
     <!--vant van-swipe 滑动组件 -->
     <van-swipe :show-indicators="false" @change="onChange" vertical :loop="false">
       <van-swipe-item v-for="(item, index) in videoList" :key="index">
-        <vueMiniPlayer v-if="videoIndex == index" ref="vueMiniPlayer" :video="item" :mutex="true" />
+        <vueMiniPlayer :key="item.uuid" v-if="videoIndex == index" ref="vueMiniPlayer" :video="item" :mutex="true" />
       </van-swipe-item>
     </van-swipe>
   </div>
 </template>
 <script>
 import TopNavBar from "./components/TopNavBar.vue";
+import { getFileList } from "@/api";
 export default {
   name: "videoChild",
   components: {
@@ -22,65 +23,54 @@ export default {
   data() {
     return {
       videoIndex: 0,
-      videoList: [
-        {
-          url: "https://video.pearvideo.com/mp4/third/20201113/cont-1706821-15126082-111655-hd.mp4",
-          name: "智.混动"
-        },
-        {
-          url: "https://video.pearvideo.com/mp4/third/20201114/cont-1707004-15488237-105621-hd.mp4",
-          name: "用jio看世界，发现更多乐趣"
-        },
-        {
-          url: "https://video.pearvideo.com/mp4/third/20201117/cont-1707360-15126082-105138-hd.mp4",
-          name: "三维"
-        },
-
-        {
-          url: "https://video.pearvideo.com/mp4/third/20201111/cont-1706407-15488237-112532-hd.mp4",
-          name: "世界关节炎日 MoveFree奶奶的约定"
-        },
-        {
-          url: "https://video.pearvideo.com/mp4/third/20201124/cont-1708555-15126082-104309-hd.mp4",
-          name: "黑无节，是他们的限定狂欢日"
-        },
-        {
-          url: "https://video.pearvideo.com/mp4/third/20201124/cont-1708555-15126082-104309-hd.mp4",
-          name: "懂咖啡，也懂你的小心思"
-        }
-      ],
+      videoList: [],
       // 数据uuid
       uuid: ""
     };
   },
 
   created() {
-    const { shopUuid, uuid, typeName } = this.$route.query;
-    console.log(this.$route);
+    const { shopUuid, uuid } = this.$route.query;
+    this.$store.commit("SET_SHOP_UUID", shopUuid || "");
     this.uuid = uuid;
     this.initVideoList();
   },
   methods: {
     initVideoList() {
-      const obj = {
-        muted: false,
-        loop: false,
-        preload: "auto",
-        poster: "",
-        volume: 1,
-        autoplay: true,
-        mutex: true,
-        playsinline: true,
-        controls: true
+      this.getFileList();
+    },
+
+    // 获取列表数据
+    getFileList() {
+      const params = {
+        page: 1,
+        pageSize: 1,
+        parentUuid: this.uuid
       };
-      this.videoList = this.videoList.map(item => {
-        item = {
-          ...item,
-          ...obj
-        };
-        return item;
+      getFileList(params).then(res => {
+        console.log(res.items);
+        this.videoList = res.items.map(item => {
+          const obj = {
+            muted: false,
+            loop: false,
+            preload: "auto",
+            poster: "",
+            volume: 1,
+            autoplay: true,
+            mutex: true,
+            playsinline: true,
+            controls: true,
+            url: item.filePath,
+            name: item.fileName,
+            ...item
+          };
+          return obj;
+        });
+
+        console.log(this.videoList);
       });
     },
+
     //滑动改变播放的视频
     onChange(index) {
       this.videoIndex = index;
