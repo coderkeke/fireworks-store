@@ -5,17 +5,21 @@
       <TopNavBar />
     </div>
     <!-- 轮播图 -->
-    <Swipe />
+    <Swipe typeName="deProCategories"/>
     <!-- 搜索 -->
     <SearchBox />
     <!-- 分类列表-->
     <CategoryList />
+
+    <div class="footer-img">
+      <img src="~@/assets/img/category/footerImg.png" alt="" />
+    </div>
   </div>
 </template>
 
 <script>
 import TopNavBar from "./components/TopNavBar.vue";
-import Swipe from "./components/Swipe.vue";
+import Swipe from "@/components/common/Swipe.vue";
 import SearchBox from "./components/SearchBox.vue";
 import CategoryList from "./components/CategoryList.vue";
 export default {
@@ -45,6 +49,16 @@ export default {
     width: 100%;
     height: 60px;
     z-index: 999;
+  }
+
+  .footer-img {
+    width: 230px;
+    height: 42px;
+    margin: 38px auto 35px;
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

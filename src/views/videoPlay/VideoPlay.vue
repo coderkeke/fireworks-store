@@ -31,7 +31,9 @@ export default {
 
   created() {
     const { shopUuid, uuid } = this.$route.query;
-    this.$store.commit("SET_SHOP_UUID", shopUuid || "");
+    if (shopUuid) {
+      this.$store.commit("SET_SHOP_UUID", shopUuid);
+    }
     this.uuid = uuid;
     this.initVideoList();
   },
@@ -45,10 +47,10 @@ export default {
       const params = {
         page: 1,
         pageSize: 1,
+        typeName: "prtVideo",
         parentUuid: this.uuid
       };
       getFileList(params).then(res => {
-        console.log(res.items);
         this.videoList = res.items.map(item => {
           const obj = {
             muted: false,

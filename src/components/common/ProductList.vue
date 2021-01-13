@@ -7,40 +7,25 @@
             <van-image radius="5" fit="cover" width="130" height="130" src="https://img.yzcdn.cn/vant/cat.jpeg" />
           </div>
           <div class="item-content">
-            <span class="prt-title">188发之春夏秋冬系列</span>
-            <span class="prt-inch">尺寸：25cm*48cm*55cm</span>
-            <span class="prt-content">含量：1/1</span>
-            <span class="prt-price">价格：面议</span>
+            <span class="prt-title">{{ info.prtName }}</span>
+
+            <span class="prt-inch"
+              >尺寸：
+              <span v-if="info.prtLong && info.prtWide && info.prtHigh">{{ info.prtLong }}cm * {{ info.prtWide }}cm * {{ info.prtHigh }}cm</span>
+              <span v-else>请联系商家</span>
+            </span>
+
+            <span class="prt-content">含量：{{ info.prtContent }}</span>
+            <span class="prt-price"
+              >价格：
+              <span v-if="info.prtPrice">{{ info.prtPrice }}</span>
+              <span v-else>面议</span>
+            </span>
             <div class="item-btn">
               <div @click="goProDetail" class="btn-left">
                 <span>详情</span>
               </div>
               <div @click="handleVideoPlay" class="btn-right">
-                <span>视频</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <template #right>
-          <van-button square text="删除" type="danger" class="delete-button" />
-        </template>
-      </van-swipe-cell>
-
-      <van-swipe-cell :disabled="disabled" right-width="64">
-        <div class="product-item">
-          <div class="item-img">
-            <van-image radius="5" fit="cover" width="130" height="130" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-          </div>
-          <div class="item-content">
-            <span class="prt-title">188发之春夏秋冬系列</span>
-            <span class="prt-inch">尺寸：25cm*48cm*55cm</span>
-            <span class="prt-content">含量：1/1</span>
-            <span class="prt-price">价格：面议</span>
-            <div class="item-btn">
-              <div @click="goProDetail" class="btn-left">
-                <span>详情</span>
-              </div>
-              <div class="btn-right">
                 <span>视频</span>
               </div>
             </div>
@@ -61,14 +46,17 @@ export default {
     disabled: {
       type: Boolean,
       default: true
+    },
+    info: {
+      type: Object
     }
   },
   methods: {
     handleVideoPlay() {
-      this.$router.push({ name: "VideoPlay" });
+      this.$router.push({ name: "VideoPlay", query: { uuid: this.info.uuid } });
     },
     goProDetail() {
-      this.$router.push({ name: "ProductDetails" });
+      this.$router.push({ name: "ProductDetails", query: { uuid: this.info.uuid } });
     }
   }
 };

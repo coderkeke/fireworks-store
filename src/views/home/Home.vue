@@ -5,7 +5,7 @@
       <TopNavBar />
     </div>
     <!-- 轮播图 -->
-    <Swipe />
+    <Swipe typeName="deShopCarousel"/>
     <!-- 搜索 -->
     <SearchBox />
     <!-- 图片展示 -->
@@ -17,7 +17,7 @@
 
 <script>
 import TopNavBar from "./components/TopNavBar.vue";
-import Swipe from "./components/Swipe.vue";
+import Swipe from "@/components/common/Swipe.vue";
 import SearchBox from "./components/SearchBox.vue";
 import ImageList from "./components/ImageList.vue";
 import RecommendList from "./components/RecommendList.vue";

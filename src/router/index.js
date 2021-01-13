@@ -75,6 +75,17 @@ const routes = [
     component: () => import("@v/productDetails/ProductDetails.vue")
   },
   /**
+   *图片页-----------------------------------------------
+   */
+  {
+    path: "/proPicture",
+    meta: {
+      isNavigation: false
+    },
+    name: "ProPicture",
+    component: () => import("@v/productDetails/components/ProPicture.vue")
+  },
+  /**
    *产品总列表-----------------------------------------------
    */
   {

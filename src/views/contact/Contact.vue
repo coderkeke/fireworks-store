@@ -5,7 +5,7 @@
       <TopNavBar />
     </div>
     <!-- 轮播图 -->
-    <Swipe />
+    <Swipe  typeName="deCompanyProfileFirst"/>
 
     <div class="advertising-box">
       <div class="advertising">
@@ -52,7 +52,7 @@
 
 <script>
 import TopNavBar from "./components/TopNavBar.vue";
-import Swipe from "./components/Swipe.vue";
+import Swipe from "@/components/common/Swipe.vue";
 export default {
   name: "Contact",
   components: {

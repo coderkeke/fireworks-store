@@ -2,7 +2,7 @@
   <div class="recommend-container">
     <div class="title">
       <img src="@/assets/img/home/recommend.png" alt="" />
-      <span>推荐产品</span>
+      <span>猜你喜欢</span>
     </div>
     <div class="product-list" v-for="item in proList" :key="item.uuid">
       <ProductList :info="item" />
@@ -49,6 +49,7 @@ export default {
 <style lang="less" scoped>
 .recommend-container {
   margin-top: 8px;
+  
 
   .title {
     background: #ffffff;

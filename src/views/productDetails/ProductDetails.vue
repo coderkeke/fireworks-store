@@ -5,48 +5,126 @@
     </div>
     <div class="pro-detail-top">
       <div class="pro-detail-img">
-        <img width="100%" height="100%" src="~@/assets/img/videoPlay/home.png" alt="" />
+        <img width="100%" height="100%" v-if="pictureList.length != 0" :src="pictureList[0].filePath" alt="" />
         <img @click="goVideoPlay" class="video-play-icon" src="~@/assets/img/proDetails/play.png" alt="" />
       </div>
       <div class="pro-detail-btn">
-        <div class="picture-btn">图片</div>
+        <div @click="goPicture" class="picture-btn">图片</div>
         <div @click="goVideoPlay" class="video-btn">视频</div>
       </div>
     </div>
 
     <div class="pro-detail-body">
-      <span class="title">极品夜景组合恒飞系列</span>
-      <span class="price">价格：面议</span>
+      <span v-if="info.prtName" class="title">{{ info.prtName }}</span>
+      <span class="price"
+        >价格：
+        <span v-if="info.prtPrice">{{ info.prtPrice }}</span>
+        <span v-else>面议</span>
+      </span>
       <div class="content">
         <div class="icon"></div>
-        <span>类别：精品夜景系列</span>
+        <span>类别：{{ info.prtType }}</span>
       </div>
       <div class="content">
         <div class="icon"></div>
-        <span>类别：精品夜景系列</span>
+        <span>寸数：{{ info.prtInch }}</span>
       </div>
       <div class="content">
         <div class="icon"></div>
-        <span>类别：精品夜景系列</span>
+        <span>发数：{{ info.prtHairNum }}</span>
       </div>
       <div class="content">
         <div class="icon"></div>
-        <span>类别：精品夜景系列</span>
+        <span
+          >尺寸：
+          <span v-if="info.prtLong && info.prtWide && info.prtHigh">{{ info.prtLong }}cm * {{ info.prtWide }}cm * {{ info.prtHigh }}cm</span>
+          <span v-else>请联系商家</span></span
+        >
+      </div>
+      <div class="content">
+        <div class="icon"></div>
+        <span>规格：{{ info.prtSpecs }}</span>
+      </div>
+      <div class="content">
+        <div class="icon"></div>
+        <span>含量：{{ info.prtContent }}</span>
+      </div>
+      <div class="content">
+        <div class="icon"></div>
+        <span>重量：{{ info.prtWeight }}</span>
+      </div>
+      <div class="content">
+        <div class="icon"></div>
+        <span>效果：{{ info.prtEffect }}</span>
       </div>
     </div>
+
+    <!-- 猜你喜欢 -->
+    <RecommendList />
   </div>
 </template>
 
 <script>
 import TopNavBar from "./components/TopNavBar.vue";
+import { getProOne, getFileList } from "@/api";
+import RecommendList from "./components/RecommendList.vue";
 export default {
   name: "ProductDetails",
   components: {
-    TopNavBar
+    TopNavBar,
+    RecommendList
   },
+  data() {
+    return {
+      uuid: "",
+      info: {},
+      pictureList: []
+    };
+  },
+
+  created() {
+    const { uuid } = this.$route.query;
+    this.uuid = uuid;
+    this.getProOne();
+  },
+
   methods: {
+    getProOne() {
+      const data = {
+        uuid: this.uuid
+      };
+
+      getProOne(data).then(res => {
+        console.log(res);
+        if (res.state == 100) {
+          this.info = res.items;
+          this.getFileList();
+        }
+      });
+    },
+
+    // 获取列表数据
+    getFileList() {
+      const params = {
+        page: 0,
+        pageSize: 0,
+        typeName: "prtPicture",
+        parentUuid: this.info.uuid
+      };
+
+      getFileList(params).then(res => {
+        if (res.state == 100) {
+          this.pictureList = res.items;
+        }
+      });
+    },
+
     goVideoPlay() {
-      this.$router.push({ name: "VideoPlay" });
+      this.$router.push({ name: "VideoPlay", query: { uuid: this.info.uuid } });
+    },
+
+    goPicture() {
+      this.$router.push({ name: "ProPicture", query: { uuid: this.info.uuid } });
     }
   }
 };
@@ -54,8 +132,6 @@ export default {
 
 <style lang="less" scoped>
 .product-detail {
-  background: #ffffff;
-  height: 100vh;
   padding-top: 60px;
   &::before {
     content: "";
@@ -71,6 +147,7 @@ export default {
   }
 
   .pro-detail-top {
+    background: #ffffff;
     width: 375px;
     height: 375px;
     position: relative;
@@ -128,7 +205,6 @@ export default {
 
   .pro-detail-body {
     width: 375px;
-    height: 350px;
     background: #ffffff;
     padding-left: 30px;
     padding-top: 27px;

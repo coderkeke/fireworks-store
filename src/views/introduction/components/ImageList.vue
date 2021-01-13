@@ -22,7 +22,7 @@ export default {
       const params = {
         page: 0,
         pageSize: 0,
-        typeName: "deStoreHomePicture",
+        typeName: "deCompanyProfile",
         parentUuid: this.$store.state.shopUuid
       };
       getFileList(params).then(res => {

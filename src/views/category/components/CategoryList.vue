@@ -1,38 +1,42 @@
 <template>
   <div class="category-list-box">
-    <div class="category-list" v-for="item of categoryList" :key="item.enName">
-      <img class="icon-category" src="@/assets/img/home/4.jpg" alt="" />
+    <div class="category-list" v-for="item of categoryList" :key="item.uuid">
+      <img class="icon-category" :src="item.filePath" alt="" />
       <div class="category-rt-box">
         <div class="category-content">
-          <span class="category-typeName">全部产品</span>
-          <span class="category-enName">quanbu</span>
+          <span class="category-typeName">{{ item.typeName }}</span>
+          <span class="category-enName">{{ item.enName }}</span>
         </div>
-        <img class="file-ico" src="@/assets/img/home/4.jpg" alt="" />
+        <img class="file-ico" :src="item.fileIoc" alt="" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { getProTypeList } from "@/api";
 export default {
   name: "CategoryList",
   data() {
     return {
-      categoryList: [
-        {
-          typeName: "全部产品",
-          enName: "quanb2u"
-        },
-        {
-          typeName: "全部产品",
-          enName: "quan23bu"
-        },
-        {
-          typeName: "全部产品",
-          enName: "quanb4u"
-        }
-      ]
+      categoryList: []
     };
+  },
+
+  created() {
+    this.getProTypeList();
+  },
+  methods: {
+    getProTypeList() {
+      const params = {
+        shopUuid: this.$store.state.shopUuid
+      };
+      getProTypeList(params).then(res => {
+        if (res.state == 100) {
+          this.categoryList = res.items;
+        }
+      });
+    }
   }
 };
 </script>
@@ -101,6 +105,9 @@ export default {
       right: 13px;
       width: 24px;
       height: 24px;
+      border-radius: 50%;
+      border: none;
+      outline: none;
     }
   }
 }
