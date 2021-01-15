@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <Navigation v-if="$route.meta.isNavigation" />
+    <Navigation v-if="$route.meta.isNavigation" />``
   </div>
 </template>
 
@@ -15,6 +15,12 @@ export default {
   watch: {
     $route(newRoute) {
       console.log(newRoute);
+    }
+  },
+  created() {
+    const { shopUuid } = this.$route.query;
+    if (shopUuid) {
+      this.$store.commit("SET_SHOP_UUID", shopUuid);
     }
   }
 };
