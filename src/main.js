@@ -19,7 +19,7 @@ import "@/assets/css/normalize.css";
 
 //amfe-flexible插件-------------------------------------------
 import "amfe-flexible";
-
+Vue.prototype.bus = new Vue();
 Vue.config.productionTip = false;
 
 new Vue({

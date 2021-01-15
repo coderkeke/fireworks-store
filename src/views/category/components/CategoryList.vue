@@ -1,6 +1,6 @@
 <template>
   <div class="category-list-box">
-    <div class="category-list" v-for="item of categoryList" :key="item.uuid">
+    <div @click="goProAllList(index)" class="category-list" v-for="(item, index) of categoryList" :key="item.uuid">
       <img class="icon-category" :src="item.filePath" alt="" />
       <div class="category-rt-box">
         <div class="category-content">
@@ -36,6 +36,9 @@ export default {
           this.categoryList = res.items;
         }
       });
+    },
+    goProAllList(index) {
+      this.$router.push({ name: "ProAllList", query: { active: index + 1 } });
     }
   }
 };

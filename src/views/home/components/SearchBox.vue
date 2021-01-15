@@ -1,16 +1,16 @@
 <template>
   <div class="search-box">
-    <div class="search-top">
+    <div @click="goProAllList" class="search-top">
       <img class="left" src="@/assets/img/home/searchIcon.png" />
       <span>请输入想要搜索的产品</span>
       <img class="right" src="@/assets/img/home/voice.png" />
     </div>
     <div class="search-type">
-      <div class="type-item">
+      <div @click="goProAllList" class="type-item">
         <img src="@/assets/img/home/xinpin.png" />
         <span>新品上市</span>
       </div>
-      <div class="type-item">
+      <div @click="goProAllList" class="type-item">
         <img src="@/assets/img/home/zhendian.png" />
         <span>镇店之宝</span>
       </div>
@@ -32,7 +32,12 @@
 
 <script>
 export default {
-  name: "SearchBox"
+  name: "SearchBox",
+  methods: {
+    goProAllList() {
+      this.$router.push({ name: "ProAllList" });
+    }
+  }
 };
 </script>
 

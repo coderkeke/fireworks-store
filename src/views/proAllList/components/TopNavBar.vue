@@ -1,12 +1,12 @@
 <template>
-  <van-nav-bar title="标题" left-arrow>
+  <van-nav-bar left-arrow>
     <template #left>
       <img @click="goBack(1)" width="28px" height="28px" src="~@/assets/img/videoPlay/back.png" alt="" />
     </template>
     <template #title>
       <div class="search-top">
         <img class="left" src="@/assets/img/home/searchIcon.png" />
-        <input class="search-input" @click="searchClick" v-model="searchName" />
+        <input class="search-input" @keyup.enter="searchClick" v-model="searchName" />
         <img class="right" src="@/assets/img/home/voice.png" />
       </div>
     </template>
@@ -29,17 +29,15 @@ export default {
           this.$router.push({ name: "Home" });
           break;
       }
+    },
+    searchClick(e) {
+      this.bus.$emit("prtName", this.searchName);
     }
   },
   data() {
     return {
       searchName: ""
     };
-  },
-  methods: {
-    searchClick(e) {
-      console.log(e);
-    }
   }
 };
 </script>
