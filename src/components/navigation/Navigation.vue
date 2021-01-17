@@ -11,17 +11,23 @@
             </div>
           </div>
           <svg v-if="props.active" fill="#fff" version="1.1" id="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 119 26">
-            <path class="path" d="M120.8,26C98.1,26,86.4,0,60.4,0C35.9,0,21.1,26,0.5,26H120.8z">
-            </path>
+            <path class="path" d="M120.8,26C98.1,26,86.4,0,60.4,0C35.9,0,21.1,26,0.5,26H120.8z"></path>
           </svg>
         </div>
       </template>
-      
     </van-tabbar-item>
   </van-tabbar>
 </template>
 
 <script>
+import home_active from "@/assets/img/navigation/home_active.png";
+import home from "@/assets/img/navigation/home.png";
+import category_active from "@/assets/img/navigation/category_active.png";
+import category from "@/assets/img/navigation/category.png";
+import introduction_active from "@/assets/img/navigation/introduction_active.png";
+import introduction from "@/assets/img/navigation/introduction.png";
+import contact_active from "@/assets/img/navigation/contact_active.png";
+import contact from "@/assets/img/navigation/contact.png";
 export default {
   name: "Navigation",
   data() {
@@ -33,32 +39,32 @@ export default {
           title: "主页",
           // activeColor: "#FF4A07",
           icon: {
-            active: require("@/assets/img/navigation/home_active.png"),
-            inactive: require("@/assets/img/navigation/home.png")
+            active: home_active,
+            inactive: home
           }
         },
         {
           to: "/category",
           title: "产品分类",
           icon: {
-            active: require("@/assets/img/navigation/category_active.png"),
-            inactive: require("@/assets/img/navigation/category.png")
+            active: category_active,
+            inactive: category
           }
         },
         {
           to: "/introduction",
           title: "企业介绍",
           icon: {
-            active: require("@/assets/img/navigation/introduction_active.png"),
-            inactive: require("@/assets/img/navigation/introduction.png")
+            active: introduction_active,
+            inactive: introduction
           }
         },
         {
           to: "/contact",
           title: "联系我们",
           icon: {
-            active: require("@/assets/img/navigation/contact_active.png"),
-            inactive: require("@/assets/img/navigation/contact.png")
+            active: contact_active,
+            inactive: contact
           }
         }
       ]
@@ -70,8 +76,7 @@ export default {
       console.log(index);
     }
   },
-  beforeMount(){
-    console.log(this.$route);
+  beforeMount() {
     // 根据不同策略提前锁定当前选中
     for (let i = 0; i < this.tabList.length; i++) {
       if (this.$route.path === this.tabList[i].to) {
@@ -81,15 +86,15 @@ export default {
     }
   },
   mounted() {
-    console.log(this.active)
+    console.log(this.active);
   }
 };
 </script>
 
 <style lang="less" scoped>
-  .van-tabbar-item--active {
-    color: #FF4A07;
-  }
+.van-tabbar-item--active {
+  color: #ff4a07;
+}
 .van-tabbar {
   height: 60px;
   box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.1);

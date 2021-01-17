@@ -46,6 +46,8 @@ export default {
 
 <style lang="less" scoped>
 .swipe-container {
+  width: 100%;
+  height: 225px;
   .my-swipe .van-swipe-item {
     display: flex;
     justify-content: center;

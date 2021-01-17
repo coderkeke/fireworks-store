@@ -36,8 +36,9 @@ export default {
           break;
       }
     },
-    searchClick(e) {
-      this.bus.$emit("prtName", this.searchName);
+
+    searchClick() {
+      this.$emit("prtName", this.searchName);
     },
     handleVoice() {
       Toast("网页暂不支持");

@@ -15,6 +15,7 @@
 
 <script>
 import { getProTypeList } from "@/api";
+import allPro from "@/assets/img/allPro.png";
 export default {
   name: "ProTypeList",
   data() {
@@ -39,20 +40,21 @@ export default {
       getProTypeList(params).then(res => {
         if (res.state == 100) {
           const obj = {
-            filePath: "https://vue-study.oss-cn-shanghai.aliyuncs.com/shop/33b95da4324e4c10a87ce1de186e6307/bc1fc1270ac14a3d8f528867cbaa6deb/2021-01-04/f871d6313c534af39411408d1c7998f1.jpg",
+            filePath: allPro,
             typeName: "全部产品",
             uuid: "bc1fc127v0acc1z4a3d8f5288637cbaa46deb"
           };
-
           this.categoryList = [obj, ...res.items];
-
-          if (res.items.length != 0) {
-            this.bus.$emit("prtCode", res.items[0].typeName);
+          if (this.active == 0) {
+            this.bus.$emit("prtCode", "");
+          } else {
+            this.bus.$emit("prtCode", this.categoryList[this.active].typeName);
           }
         }
       });
     },
     change(e) {
+      console.log(e);
       if (e == 0) {
         this.bus.$emit("prtCode", "");
       } else {

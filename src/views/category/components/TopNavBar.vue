@@ -1,20 +1,25 @@
 <template>
   <van-nav-bar title="标题" left-arrow>
     <template #left>
-      <img class="home-left" src="@/assets/img/home/homLeft.png" alt="" />
+      <img @click="goAllProList" class="home-left" src="@/assets/img/home/homLeft.png" alt="" />
     </template>
     <template #title>
       <img class="home-logo" src="@/assets/img/home/homeLogo.png" alt="" />
     </template>
-    <template #right>
+    <!-- <template #right>
       <img class="home-right" src="@/assets/img/home/homeUser.png" alt="" />
-    </template>
+    </template> -->
   </van-nav-bar>
 </template>
 
 <script>
 export default {
-  name: "TopNavBar"
+  name: "TopNavBar",
+  methods: {
+    goAllProList() {
+      this.$router.push({ name: "AllProList" });
+    }
+  }
 };
 </script>
 

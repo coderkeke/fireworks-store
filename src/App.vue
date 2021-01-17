@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <Navigation v-if="$route.meta.isNavigation" />``
+    <Navigation v-if="$route.meta.isNavigation" />
   </div>
 </template>
 
@@ -14,14 +14,18 @@ export default {
   },
   watch: {
     $route(newRoute) {
-      console.log(newRoute);
+      const { shopUuid } = newRoute.query;
+      if (shopUuid) {
+        this.$store.commit("SET_SHOP_UUID", shopUuid);
+      }
     }
   },
   created() {
-    const { shopUuid } = this.$route.query;
-    if (shopUuid) {
-      this.$store.commit("SET_SHOP_UUID", shopUuid);
-    }
+    this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("beforeunload"))));
+    window.addEventListener("beforeunload", () => {
+      let state = JSON.stringify(this.$store.state);
+      localStorage.setItem("beforeunload", state);
+    });
   }
 };
 </script>

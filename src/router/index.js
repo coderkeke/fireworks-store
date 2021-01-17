@@ -95,6 +95,17 @@ const routes = [
     },
     name: "ProAllList",
     component: () => import("@v/proAllList/ProAllList.vue")
+  },
+  /**
+   *总产品列表-----------------------------------------------
+   */
+  {
+    path: "/allProList",
+    meta: {
+      isNavigation: false
+    },
+    name: "AllProList",
+    component: () => import("@v/allProList/AllProList.vue")
   }
 ];
 
