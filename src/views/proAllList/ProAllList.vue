@@ -3,19 +3,20 @@
     <div class="top-nav-bar">
       <TopNavBar />
     </div>
-
     <!-- 轮播 -->
     <div class="pro-type">
       <ProTypeList />
     </div>
-
-    <div class="pro-content-list">
-      <RecommendList />
-    </div>
+    <scroll class="content" ref="scroll" :probe-type="3" :pull-up-load="true" @scroll="contentScroll" @pullingUp="loadMore">
+      <div class="pro-content-list">
+        <RecommendList />
+      </div>
+    </scroll>
   </div>
 </template>
 
 <script>
+import scroll from "@c/scroll/Scroll.vue";
 import TopNavBar from "./components/TopNavBar.vue";
 import ProTypeList from "./components/ProTypeList.vue";
 import RecommendList from "./components/RecommendList.vue";
@@ -24,15 +25,29 @@ export default {
   components: {
     TopNavBar,
     ProTypeList,
-    RecommendList
+    RecommendList,
+    scroll
+  },
+  methods: {
+    //监听滚动事件
+    contentScroll(position) {
+      //1.判断BackTop是否显示
+      // this.isShowBackTop = -position.y > BACKTOP_DISTANCE;
+      //2.觉得tabControl是否吸顶
+      // this.isTabFixed = -position.y > this.tabControl;
+    },
+    //加载更多
+    loadMore() {
+      // this.getHomeGoods(this.currentType);
+    }
   }
 };
 </script>
 
 <style lang="less" scoped>
 .container {
-  padding-bottom: 100px;
-
+  height: 100vh;
+  overflow: hidden;
   padding-top: 60px;
   &::before {
     content: "";
@@ -54,6 +69,15 @@ export default {
 
   .pro-content-list {
     width: 100vw;
+  }
+
+  .content {
+    overflow: hidden;
+    height: calc(100vh - 170px);
+
+    .pro-content-list {
+      padding-bottom: 30px;
+    }
   }
 }
 </style>

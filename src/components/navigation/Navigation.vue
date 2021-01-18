@@ -10,8 +10,13 @@
               <img :src="props.active ? tab.icon.active : tab.icon.inactive" />
             </div>
           </div>
-          <svg v-if="props.active" fill="#fff" version="1.1" id="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 119 26">
-            <path class="path" d="M120.8,26C98.1,26,86.4,0,60.4,0C35.9,0,21.1,26,0.5,26H120.8z"></path>
+          <svg class="svg-box" v-if="props.active" fill="#fff" version="1.1" id="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 119 26">
+            <defs>
+              <filter id="shadow">
+                <feDropShadow dx="0" dy="-3" flood-color="#000" flood-opacity="0.04" />
+              </filter>
+            </defs>
+            <path filter="url(#shadow)" class="path" d="M120.8,26C98.1,26,86.4,0,60.4,0C35.9,0,21.1,26,0.5,26H120.8z"></path>
           </svg>
         </div>
       </template>
@@ -93,24 +98,30 @@ export default {
 
 <style lang="less" scoped>
 .van-tabbar-item--active {
-  color: #ff4a07;
+  color: #ff4a07 !important;
+}
+
+[class*="van-hairline"]::after {
+  border: none;
 }
 .van-tabbar {
   height: 60px;
   box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+
   /deep/ .van-tabbar-item {
     .van-tabbar-item__icon {
       height: 22px;
       width: 100%;
 
       .tab-item {
-        height: 22px;
         position: relative;
         svg {
           position: absolute;
           top: 3px;
           left: 0;
-          z-index: 1;
+          z-index: -10;
         }
         .img-box {
           display: flex;
@@ -130,7 +141,7 @@ export default {
 
         .img-box {
           .img-bg {
-            background-color: #fff;
+            background-color: transparent;
             border-radius: 50%;
             width: 60px;
             height: 60px;

@@ -5,7 +5,7 @@
       <TopNavBar />
     </div>
     <!-- 轮播图 -->
-    <Swipe  typeName="deCompanyProfileFirst"/>
+    <Swipe typeName="deCompanyProfileFirst" />
 
     <div class="advertising-box">
       <div class="advertising">
@@ -163,6 +163,7 @@ export default {
 
     .call {
       background: #37d503;
+      box-shadow: 2px 2px 8px 0px rgba(55, 213, 3, 0.7);
     }
   }
 }

@@ -6,10 +6,6 @@
     </div>
     <!-- 轮播图 -->
     <Swipe typeName="deCompanyProfileFirst" />
-    <div class="title">
-      <img src="@/assets/img/home/recommend.png" alt="" />
-      <span>企业图片</span>
-    </div>
     <!-- 图片展示 -->
     <ImageList />
   </div>
@@ -44,30 +40,6 @@ export default {
     width: 100%;
     height: 60px;
     z-index: 999;
-  }
-
-  .title {
-    background: #ffffff;
-    width: 100%;
-    height: 47px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 10px 0;
-
-    & > img {
-      width: 20px;
-      height: 20px;
-      margin: 0 8px 0 28px;
-    }
-
-    & > span {
-      font-size: 18px;
-      font-family: PingFang SC;
-      font-weight: bold;
-      color: #323232;
-      line-height: 10px;
-    }
   }
 }
 </style>

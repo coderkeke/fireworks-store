@@ -3,7 +3,6 @@
     <div @click="goProAllList" class="search-top">
       <img class="left" src="@/assets/img/home/searchIcon.png" />
       <span>请输入想要搜索的产品</span>
-      <img class="right" src="@/assets/img/home/voice.png" />
     </div>
     <div class="search-type">
       <div @click="goProAllList" class="type-item">
@@ -35,6 +34,7 @@ export default {
   name: "SearchBox",
   methods: {
     goProAllList() {
+       this.$store.commit("SET_PRO_ACTIVE", 0);
       this.$router.push({ name: "ProAllList" });
     }
   }
@@ -46,7 +46,6 @@ export default {
   width: 375px;
   height: 189px;
   background: #ffffff;
-  border-radius: 15px;
   margin: 9px 0 11px 0;
   display: flex;
   flex-direction: column;
@@ -109,7 +108,6 @@ export default {
         font-family: PingFang SC;
         font-weight: 500;
         color: #646464;
-        line-height: 21px;
       }
     }
   }

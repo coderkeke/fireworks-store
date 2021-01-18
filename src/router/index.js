@@ -91,7 +91,8 @@ const routes = [
   {
     path: "/proAllList",
     meta: {
-      isNavigation: false
+      isNavigation: false,
+      noKeep: true
     },
     name: "ProAllList",
     component: () => import("@v/proAllList/ProAllList.vue")

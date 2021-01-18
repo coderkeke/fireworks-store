@@ -26,12 +26,10 @@ export default {
   },
 
   created() {
-    const { active } = this.$route.query;
-    if (active) {
-      this.active = active;
-    }
+    this.active = this.$store.state.proActive;
     this.getProTypeList();
   },
+
   methods: {
     getProTypeList() {
       const params = {
@@ -39,27 +37,17 @@ export default {
       };
       getProTypeList(params).then(res => {
         if (res.state == 100) {
-          const obj = {
-            filePath: allPro,
-            typeName: "全部产品",
-            uuid: "bc1fc127v0acc1z4a3d8f5288637cbaa46deb"
-          };
-          this.categoryList = [obj, ...res.items];
-          if (this.active == 0) {
-            this.bus.$emit("prtCode", "");
-          } else {
-            this.bus.$emit("prtCode", this.categoryList[this.active].typeName);
-          }
+          this.categoryList = [...res.items];
+          this.$nextTick(() => {
+            this.active = this.$store.state.proActive;
+          });
+          this.bus.$emit("prtCode", this.categoryList[this.active].typeName);
         }
       });
     },
     change(e) {
-      console.log(e);
-      if (e == 0) {
-        this.bus.$emit("prtCode", "");
-      } else {
-        this.bus.$emit("prtCode", this.categoryList[e].typeName);
-      }
+      this.$store.commit("SET_PRO_ACTIVE", e);
+      this.bus.$emit("prtCode", this.categoryList[e].typeName);
     }
   }
 };

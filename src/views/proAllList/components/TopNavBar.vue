@@ -7,7 +7,7 @@
       <div class="search-top">
         <img @click="searchClick" class="left" src="@/assets/img/home/searchIcon.png" />
         <input class="search-input" @keyup.enter="searchClick" v-model="searchName" />
-        <img @click="handleVoice" class="right" src="@/assets/img/home/voice.png" />
+        <!-- <img @click="handleVoice" class="right" src="@/assets/img/home/voice.png" /> -->
       </div>
     </template>
     <template #right>

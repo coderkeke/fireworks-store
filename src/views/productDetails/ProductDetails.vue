@@ -9,8 +9,8 @@
         <img @click="goVideoPlay" class="video-play-icon" src="~@/assets/img/proDetails/play.png" alt="" />
       </div>
       <div class="pro-detail-btn">
-        <div @click="goPicture" class="picture-btn">图片</div>
-        <div @click="goVideoPlay" class="video-btn">视频</div>
+        <div @click="goPicture" class="picture-btn"><span>图片</span></div>
+        <div @click="goVideoPlay" class="video-btn"><span>视频</span></div>
       </div>
     </div>
 
@@ -183,22 +183,38 @@ export default {
       .picture-btn {
         width: 55px;
         height: 30px;
-        line-height: 30px;
         text-align: center;
         color: #ffffff;
         background: linear-gradient(90deg, #4d5af1 0%, #636fff 100%);
         border-radius: 15px;
         margin-right: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & > span {
+          font-size: 14px;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #ffffff;
+        }
       }
 
       .video-btn {
         width: 55px;
         height: 30px;
-        line-height: 30px;
         text-align: center;
         color: #ffffff;
         background: linear-gradient(90deg, #b63cfb 0%, #ff3cf8 100%);
         border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & > span {
+          font-size: 14px;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #ffffff;
+        }
       }
     }
   }
@@ -229,7 +245,7 @@ export default {
     .content {
       display: flex;
       align-items: center;
-      margin: 10px;
+      margin-bottom: 9px;
       .icon {
         width: 8px;
         height: 8px;

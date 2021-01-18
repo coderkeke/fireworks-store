@@ -1,16 +1,21 @@
 <template>
   <div class="search-box">
-    <div class="search-top">
+    <div @click="goProAllList" class="search-top">
       <img class="left" src="@/assets/img/home/searchIcon.png" />
       <span>请输入想要搜索的产品</span>
-      <img class="right" src="@/assets/img/home/voice.png" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SearchBox"
+  name: "SearchBox",
+  methods: {
+    goProAllList() {
+      this.$store.commit("SET_PRO_ACTIVE", 0);
+      this.$router.push({ name: "ProAllList" });
+    }
+  }
 };
 </script>
 
@@ -19,7 +24,6 @@ export default {
   width: 375px;
   height: 87px;
   background: #ffffff;
-  border-radius: 15px;
   margin: 9px 0 11px 0;
   display: flex;
   flex-direction: column;

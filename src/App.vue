@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive v-if="!$route.meta.noKeep">
+      <router-view />
+    </keep-alive>
+    <router-view v-else />
     <Navigation v-if="$route.meta.isNavigation" />
   </div>
 </template>

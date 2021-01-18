@@ -38,7 +38,8 @@ export default {
       });
     },
     goProAllList(index) {
-      this.$router.push({ name: "ProAllList", query: { active: index + 1 } });
+      this.$store.commit("SET_PRO_ACTIVE", index);
+      this.$router.push({ name: "ProAllList" });
     }
   }
 };

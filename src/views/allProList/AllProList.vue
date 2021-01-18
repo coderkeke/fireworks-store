@@ -9,10 +9,14 @@
       </div>
 
       <div class="list">
-        <div @click="goProDetail(item.uuid)" class="item" v-for="(item, index) of proList" :key="item.uuid">
-          <img :src="imgList[index]" alt="" />
-          <span>{{ item.prtName }}</span>
-        </div>
+        <div class="loading" v-if="isLoading"><van-loading color="#0094ff" /></div>
+        <template v-if="loading && proList.length !== 0">
+          <div @click="goProDetail(item.uuid)" class="item" v-for="(item, index) of proList" :key="item.uuid">
+            <img :src="imgList[index]" alt="" />
+            <span>{{ item.prtName }}</span>
+          </div>
+        </template>
+        <div class="no-item" :key="loading" v-if="loading && proList.length == 0">暂无产品</div>
       </div>
     </div>
   </div>
@@ -32,9 +36,11 @@ export default {
       active: "",
       categoryList: [],
       proList: [],
-      prtCode: "",
+      prtType: "",
       prtName: "",
-      imgList: []
+      imgList: [],
+      isLoading: false,
+      loading: false
     };
   },
   created() {
@@ -51,11 +57,8 @@ export default {
       };
       getProTypeList(params).then(res => {
         if (res.state == 100) {
-          const obj = {
-            typeName: "全部产品",
-            uuid: "bc1fc127v0acc1z4a3d8f5288637cbaa46deb"
-          };
-          this.categoryList = [obj, ...res.items];
+          this.categoryList = [...res.items];
+          this.prtType = this.categoryList[0].typeName;
           this.getProList();
         }
       });
@@ -67,29 +70,25 @@ export default {
         page: 0,
         pageSize: 0,
         shopUuid: this.$store.state.shopUuid,
-        prtCode: this.prtCode || "",
+        prtType: this.prtType || "",
         prtName: this.prtName || ""
       };
       this.isLoading = true;
+      this.loading = false;
       getProList(params).then(res => {
-        console.log(res);
         if (res.state == 100) {
           this.proList = res.items;
           this.proList.forEach((item, index) => {
             this.getFileList(item.uuid, index);
           });
+          this.loading = true;
         }
         this.isLoading = false;
       });
     },
 
     onChangeSidebar(e) {
-      if (e == 0) {
-        this.prtCode = "";
-      } else {
-        this.prtCode = this.categoryList[e].typeName;
-      }
-
+      this.prtType = this.categoryList[e].typeName;
       this.getProList();
     },
 
@@ -127,8 +126,9 @@ export default {
     display: flex;
 
     .list {
-      width: 100%;
-      height: 100%;
+      flex: 1;
+      height: calc(100vh - 60px);
+      overflow: auto;
       display: flex;
       flex-wrap: wrap;
       padding: 15px 0 15px 14px;
@@ -158,6 +158,13 @@ export default {
           text-overflow: ellipsis;
         }
       }
+
+      .no-item {
+        font-size: 24px;
+        font-family: PingFang SC;
+        font-weight: 700;
+        color: #969696;
+      }
     }
   }
 
@@ -166,32 +173,32 @@ export default {
     height: 100%;
   }
 
-  .van-sidebar {
+  /deep/.van-sidebar {
     width: 109px;
-    min-height: 100vh;
+    height: calc(100vh - 60px);
     background-color: #e5e5e5;
-  }
 
-  .van-sidebar-item--select::before {
-    background-color: #4f5aff;
-    width: 3px;
-    height: 100%;
-  }
+    .van-sidebar-item--select::before {
+      background-color: #4f5aff;
+      width: 3px;
+      height: 100%;
+    }
 
-  .van-sidebar-item {
-    background-color: #e5e5e5;
-    font-size: 14px;
-    font-family: PingFang SC;
-    font-weight: 500;
-    color: #646464;
-  }
-  .van-sidebar-item--select,
-  .van-sidebar-item--select:active {
-    background-color: #f5f5f5;
-    font-size: 14px;
-    font-family: PingFang SC;
-    font-weight: 500;
-    color: #646464;
+    .van-sidebar-item {
+      background-color: #e5e5e5;
+      font-size: 14px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #646464;
+    }
+    .van-sidebar-item--select,
+    .van-sidebar-item--select:active {
+      background-color: #f5f5f5;
+      font-size: 14px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #646464;
+    }
   }
 }
 </style>

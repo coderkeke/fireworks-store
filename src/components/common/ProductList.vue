@@ -4,11 +4,10 @@
       <van-swipe-cell :disabled="disabled" right-width="64">
         <div class="product-item">
           <div class="item-img">
-            <van-image radius="5" fit="cover" width="130" height="130" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image radius="5" fit="cover" width="130" height="130" :src="imgUrl" />
           </div>
           <div class="item-content">
             <span class="prt-title">{{ info.prtName }}</span>
-
             <span class="prt-inch"
               >尺寸：
               <span v-if="info.prtLong && info.prtWide && info.prtHigh">{{ info.prtLong }}cm * {{ info.prtWide }}cm * {{ info.prtHigh }}cm</span>
@@ -40,6 +39,7 @@
 </template>
 
 <script>
+import { getFileList } from "@/api";
 export default {
   name: "productList",
   props: {
@@ -51,12 +51,35 @@ export default {
       type: Object
     }
   },
+  data() {
+    return {
+      imgUrl: ""
+    };
+  },
+  created() {
+    this.getFileList();
+  },
   methods: {
     handleVideoPlay() {
       this.$router.push({ name: "VideoPlay", query: { uuid: this.info.uuid } });
     },
     goProDetail() {
       this.$router.push({ name: "ProductDetails", query: { uuid: this.info.uuid } });
+    },
+
+    getFileList() {
+      const params = {
+        page: 0,
+        pageSize: 0,
+        typeName: "prtPicture",
+        parentUuid: this.info.uuid
+      };
+      getFileList(params).then(res => {
+        console.log(res.items);
+        if (res.state == 100) {
+          this.imgUrl = res.items[0].filePath;
+        }
+      });
     }
   }
 };
@@ -108,6 +131,9 @@ export default {
           .prt-inch,
           .prt-content {
             font-size: 11px;
+            color: #989898;
+            font-family: PingFang SC;
+            font-weight: 500;
             color: #989898;
           }
           .prt-content {

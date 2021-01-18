@@ -25,7 +25,7 @@
       </van-swipe-item>
     </van-swipe>
 
-    <div class="product-item" v-else><span>暂无视频</span></div>
+    <div class="product-item" v-if="videoList.length == 0 && loading"><span>暂无视频</span></div>
   </div>
 </template>
 <script>
@@ -41,7 +41,8 @@ export default {
       videoIndex: 0,
       videoList: [],
       // 数据uuid
-      uuid: ""
+      uuid: "",
+      loading: false
     };
   },
 
@@ -68,6 +69,7 @@ export default {
       };
       getFileList(params).then(res => {
         this.videoList = res.items;
+        this.loading = true;
       });
     },
 
@@ -79,7 +81,11 @@ export default {
     goBack(type) {
       switch (type) {
         case 1:
-          this.$router.push({ name: "ProductDetails", query: { uuid: this.uuid } });
+          if (window.history.length <= 1) {
+            this.$router.push({ name: "ProductDetails", query: { uuid: this.uuid } });
+          } else {
+            this.$router.go(-1);
+          }
           break;
         case 2:
           this.$router.push({ name: "Home" });

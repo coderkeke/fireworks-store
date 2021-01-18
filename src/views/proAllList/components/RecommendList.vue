@@ -1,12 +1,11 @@
 <template>
   <div class="recommend-container">
     <div class="loading" v-if="isLoading"><van-loading color="#0094ff" /></div>
-
     <div v-else>
       <div class="product-list" v-for="item in proList" :key="item.uuid">
         <ProductList :info="item" />
       </div>
-      <div class="product-item" v-if="proList.length == 0"><span>暂无数据</span></div>
+      <div class="product-item" v-if="(proList.length == 0) & loading"><span>暂无产品</span></div>
     </div>
   </div>
 </template>
@@ -27,7 +26,8 @@ export default {
       proList: [],
       prtCode: "",
       prtName: "",
-      isLoading: false
+      isLoading: false,
+      loading: false
     };
   },
 
@@ -51,7 +51,7 @@ export default {
         page: 0,
         pageSize: 0,
         shopUuid: this.$store.state.shopUuid,
-        prtCode: this.prtCode || "",
+        prtType: this.prtCode || "",
         prtName: this.prtName || ""
       };
       console.log(params);
@@ -62,6 +62,7 @@ export default {
         }
 
         this.isLoading = false;
+        this.loading = true;
       });
     }
   }
