@@ -58,7 +58,8 @@ const routes = [
   {
     path: "/videoPlay",
     meta: {
-      isNavigation: false
+      isNavigation: false,
+      noKeep: true
     },
     name: "VideoPlay",
     component: () => import("@v/videoPlay/VideoPlay.vue")
@@ -107,6 +108,17 @@ const routes = [
     },
     name: "AllProList",
     component: () => import("@v/allProList/AllProList.vue")
+  },
+  /**
+   *我的列表-----------------------------------------------
+   */
+  {
+    path: "/profile",
+    meta: {
+      isNavigation: false
+    },
+    name: "Profile",
+    component: () => import("@v/profile/Profile.vue")
   }
 ];
 

@@ -15,7 +15,6 @@
 
 <script>
 import { getProTypeList } from "@/api";
-import allPro from "@/assets/img/allPro.png";
 export default {
   name: "ProTypeList",
   data() {

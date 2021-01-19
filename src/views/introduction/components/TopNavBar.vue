@@ -6,9 +6,9 @@
     <template #title>
       <img class="home-logo" src="@/assets/img/home/homeLogo.png" alt="" />
     </template>
-    <!-- <template #right>
-      <img class="home-right" src="@/assets/img/home/homeUser.png" alt="" />
-    </template> -->
+    <template #right>
+      <img @click="goProfile" class="home-right" src="@/assets/img/home/homeUser.png" alt="" />
+    </template>
   </van-nav-bar>
 </template>
 
@@ -18,6 +18,9 @@ export default {
   methods: {
     goAllProList() {
       this.$router.push({ name: "AllProList" });
+    },
+    goProfile() {
+      this.$router.push({ name: "Profile" });
     }
   }
 };

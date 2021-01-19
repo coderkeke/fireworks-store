@@ -54,6 +54,7 @@ export default {
     this.uuid = uuid;
     this.initVideoList();
   },
+
   methods: {
     initVideoList() {
       this.getFileList();

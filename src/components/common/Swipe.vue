@@ -96,6 +96,7 @@ export default {
         background: #808080;
         opacity: 0.5;
         border-radius: 50%;
+        transition: width 0.4s;
       }
 
       .indicator.active {
