@@ -123,6 +123,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (to.path == "/productDetails" || to.path == "/videoPlay") {

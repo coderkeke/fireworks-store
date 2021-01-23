@@ -35,3 +35,20 @@ export function getProOne(params) {
     params
   });
 }
+
+// 获取微信二维码
+export function getQrCode(params) {
+  return request({
+    url: "/app/WeChat/getQrCode",
+    method: "get",
+    params
+  });
+}
+
+export function scanCode(params) {
+  return request({
+    url: "/app/WeChat/scanCode",
+    method: "get",
+    params
+  });
+}
