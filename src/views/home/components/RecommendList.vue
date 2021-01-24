@@ -49,7 +49,6 @@ export default {
 <style lang="less" scoped>
 .recommend-container {
   margin-top: 8px;
-
   .title {
     background: #ffffff;
     width: 100%;
@@ -57,6 +56,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin-bottom: 7px;
 
     & > img {
       width: 20px;

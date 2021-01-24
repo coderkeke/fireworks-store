@@ -9,19 +9,19 @@
         <img src="@/assets/img/home/xinpin.png" />
         <span>新品上市</span>
       </div>
-      <div @click="goProAllList" class="type-item">
+      <div @click="goProList(0)" class="type-item">
         <img src="@/assets/img/home/zhendian.png" />
         <span>镇店之宝</span>
       </div>
-      <div class="type-item">
+      <div @click="goSharingSpace(0)" class="type-item">
         <img src="@/assets/img/home/ranfang.png" />
         <span>燃放日常</span>
       </div>
-      <div class="type-item">
+      <div @click="goSharingSpace(1)" class="type-item">
         <img src="@/assets/img/home/yanhuo.png" />
         <span>焰火视频</span>
       </div>
-      <div class="type-item">
+      <div @click="goSharingSpace(2)" class="type-item">
         <img src="@/assets/img/home/tuwen.png" />
         <span>精彩图文</span>
       </div>
@@ -34,8 +34,15 @@ export default {
   name: "SearchBox",
   methods: {
     goProAllList() {
-       this.$store.commit("SET_PRO_ACTIVE", 0);
+      this.$store.commit("SET_PRO_ACTIVE", 0);
       this.$router.push({ name: "ProAllList" });
+    },
+
+    goSharingSpace(type) {
+      this.$router.push({ name: "SharingSpace", query: { type } });
+    },
+    goProList(type) {
+      this.$router.push({ name: "ProList", query: { type } });
     }
   }
 };

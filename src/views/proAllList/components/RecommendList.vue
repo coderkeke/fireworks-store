@@ -3,7 +3,7 @@
     <div class="loading" v-if="isLoading"><van-loading color="#0094ff" /></div>
     <div v-else>
       <div class="product-list" v-for="item in proList" :key="item.uuid">
-        <ProductList :info="item" />
+        <ProductList @refreshScroll="refreshScroll" :info="item" />
       </div>
       <div class="product-item" v-if="(proList.length == 0) & loading"><span>暂无产品</span></div>
     </div>
@@ -54,16 +54,19 @@ export default {
         prtType: this.prtCode || "",
         prtName: this.prtName || ""
       };
-      console.log(params);
       this.isLoading = true;
       getProList(params).then(res => {
         if (res.state == 100) {
           this.proList = res.items;
         }
-
+        this.refreshScroll();
         this.isLoading = false;
         this.loading = true;
       });
+    },
+
+    refreshScroll() {
+      this.$emit("refreshScroll");
     }
   }
 };
@@ -71,8 +74,6 @@ export default {
 
 <style lang="less" scoped>
 .recommend-container {
-  margin-top: 8px;
-
   .title {
     background: #ffffff;
     width: 100%;

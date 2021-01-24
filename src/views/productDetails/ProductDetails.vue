@@ -58,7 +58,17 @@
         <span>效果：{{ info.prtEffect }}</span>
       </div>
     </div>
+    <div class="body-footer">
+      <div @click="handleFn(0)" class="shou-cang">
+        <img src="../../assets/img/shoucang.png" alt="" />
+        <span>收藏</span>
+      </div>
 
+      <div @click="handleFn(1)" class="xi-huan">
+        <img src="../../assets/img/xihuan.png" alt="" />
+        <span>喜欢</span>
+      </div>
+    </div>
     <!-- 猜你喜欢 -->
     <RecommendList />
   </div>
@@ -66,7 +76,7 @@
 
 <script>
 import TopNavBar from "./components/TopNavBar.vue";
-import { getProOne, getFileList } from "@/api";
+import { getProOne, getFileList, reCollection, collection } from "@/api";
 import RecommendList from "./components/RecommendList.vue";
 export default {
   name: "ProductDetails",
@@ -78,7 +88,8 @@ export default {
     return {
       uuid: "",
       info: {},
-      pictureList: []
+      pictureList: [],
+      likColl: 0
     };
   },
 
@@ -115,6 +126,34 @@ export default {
       getFileList(params).then(res => {
         if (res.state == 100) {
           this.pictureList = res.items;
+        }
+      });
+    },
+
+    handleFn(type) {
+      this.likColl = type;
+    },
+
+    // 删除
+    reCollection() {
+      const data = {
+        likColl: this.likColl,
+        prtUuid: this.info.uuid
+      };
+      reCollection(data).then(res => {
+        if (res.state == 100) {
+        }
+      });
+    },
+
+    // 收藏
+    collection() {
+      const data = {
+        likColl: this.likColl,
+        prtUuid: this.info.uuid
+      };
+      collection(data).then(res => {
+        if (res.state == 100) {
         }
       });
     },
@@ -259,6 +298,42 @@ export default {
         font-family: PingFang SC;
         font-weight: 500;
         color: #323232;
+      }
+    }
+  }
+
+  .body-footer {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 23px 0;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & > img {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 9px;
+      }
+
+      & > span {
+        font-size: 13px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ffbc00;
+        line-height: 14px;
+      }
+    }
+
+    .xi-huan {
+      margin-left: 57px;
+      span {
+        color: #ff1448 !important;
       }
     }
   }

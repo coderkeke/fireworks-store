@@ -10,16 +10,10 @@
 
 <script>
 import Navigation from "@c/navigation/Navigation.vue";
-import { getQrCode, scanCode } from "@/api";
 export default {
   name: "App",
   components: {
     Navigation
-  },
-  data() {
-    return {
-      result: "465465"
-    };
   },
   watch: {
     $route(newRoute) {
@@ -35,25 +29,6 @@ export default {
       let state = JSON.stringify(this.$store.state);
       localStorage.setItem("beforeunload", state);
     });
-
-    if (!this.$store.state.userInfo) {
-      this.login();
-    }
-  },
-
-  methods: {
-    login() {
-      const params = {
-        url: location.pathname,
-        uuid: this.$store.state.shopUuid
-      };
-      getQrCode(params).then(res => {
-        if (res.state == 100) {
-          let { url } = res.items;
-          // window.location.href = url;
-        }
-      });
-    }
   }
 };
 </script>

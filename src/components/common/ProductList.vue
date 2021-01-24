@@ -7,6 +7,9 @@
             <van-image radius="5" fit="cover" width="130" height="130" :src="imgUrl" />
           </div>
           <div class="item-content">
+            <div class="shou-cang">
+              <img src="../../assets/img/shoucang.png" alt="" />
+            </div>
             <span class="prt-title">{{ info.prtName }}</span>
             <span class="prt-inch"
               >尺寸：
@@ -31,7 +34,7 @@
           </div>
         </div>
         <template #right>
-          <van-button square text="删除" type="danger" class="delete-button" />
+          <van-button @click="handleDelete" square text="删除" type="danger" class="delete-button" />
         </template>
       </van-swipe-cell>
     </div>
@@ -78,8 +81,12 @@ export default {
         console.log(res.items);
         if (res.state == 100) {
           this.imgUrl = res.items[0].filePath;
+          this.$emit("refreshScroll");
         }
       });
+    },
+    handleDelete() {
+      this.$emit("handleDelete", this.info);
     }
   }
 };
@@ -91,10 +98,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 7px;
+
   .van-swipe-cell {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 
     /deep/ .van-swipe-cell__wrapper {
       display: flex;
@@ -109,12 +116,23 @@ export default {
         display: flex;
 
         .item-content {
-          flex: 1;
+          width: 100%;
           display: flex;
           flex-direction: column;
           margin-left: 20px;
           font-family: PingFang SC;
           font-weight: 500;
+          position: relative;
+
+          .shou-cang {
+            position: absolute;
+            top: 0;
+            right: 0;
+            & > img {
+              width: 20px;
+              height: 20px;
+            }
+          }
 
           & > span {
             white-space: nowrap;
@@ -125,7 +143,7 @@ export default {
           .prt-title {
             font-size: 13px;
             color: #000000;
-            margin: 7px 0 8px;
+            margin: 0 0 8px;
           }
 
           .prt-inch,

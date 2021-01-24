@@ -3,11 +3,10 @@
     <TopNavBar />
     <div class="body">
       <div class="head-img-box">
-        <img src="" alt="" />
+        <img :src="$store.state.userInfo && $store.state.userInfo.headimgurl" alt="" />
         <span>微信头像</span>
       </div>
-
-      <div class="item">
+      <div @click="goProList(1)" class="item">
         <div class="item-left">
           <img class="item-icon" src="@/assets/img/profile/xihuan.png" alt="" />
           <span>我的喜欢</span>
@@ -16,7 +15,7 @@
         <van-icon class="item-right" name="arrow" />
       </div>
 
-      <div class="item">
+      <div @click="goProList(2)" class="item">
         <div class="item-left">
           <img class="item-icon" src="@/assets/img/profile/shoucang.png" alt="" />
           <span>我的收藏</span>
@@ -25,7 +24,7 @@
         <van-icon class="item-right" name="arrow" />
       </div>
 
-      <div class="item">
+      <div @click="goProList(3)" class="item">
         <div class="item-left">
           <img class="item-icon" src="@/assets/img/profile/zuji.png" alt="" />
           <span>我的足迹</span>
@@ -43,6 +42,11 @@ export default {
   name: "Profile",
   components: {
     TopNavBar
+  },
+  methods: {
+    goProList(type) {
+      this.$router.push({ name: "ProList", query: { type } });
+    }
   }
 };
 </script>

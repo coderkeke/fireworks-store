@@ -119,6 +119,28 @@ const routes = [
     },
     name: "Profile",
     component: () => import("@v/profile/Profile.vue")
+  },
+  /**
+   *分享空间-----------------------------------------------
+   */
+  {
+    path: "/sharingSpace",
+    meta: {
+      isNavigation: false,
+      noKeep: true
+    },
+    name: "SharingSpace",
+    component: () => import("@v/home/views/SharingSpace.vue")
+  },
+  // 产品列表
+  {
+    path: "/proList",
+    meta: {
+      isNavigation: false,
+      noKeep: true
+    },
+    name: "ProList",
+    component: () => import("@v/proList/ProList.vue")
   }
 ];
 

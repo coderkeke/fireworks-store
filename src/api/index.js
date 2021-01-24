@@ -52,3 +52,46 @@ export function scanCode(params) {
     params
   });
 }
+
+// 获取/视频/图文/日常《公众号 调用的接口》
+export function getSharingSpace(params) {
+  return request({
+    url: "/web/v1/ShopPicVideo/appData/getList",
+    method: "get",
+    params
+  });
+}
+
+// 喜欢列表
+export function getCollList(params) {
+  return request({
+    url: "/web/v1/prt/product/appData/getCollList",
+    method: "get",
+    params
+  });
+}
+
+//足迹
+export function getFootprint(params) {
+  return request({
+    url: "/web/v1/prt/product/appData/getFootprint",
+    method: "get",
+    params
+  });
+}
+// 删除喜欢
+export function reCollection(data) {
+  return request({
+    url: "/web/v1/prt/product/appData/reCollection",
+    method: "POST",
+    data
+  });
+}
+// 收藏喜欢
+export function collection(data) {
+  return request({
+    url: "/web/v1/prt/product/appData/collection",
+    method: "POST",
+    data
+  });
+}

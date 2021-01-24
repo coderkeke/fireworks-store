@@ -7,9 +7,11 @@
     <div class="pro-type">
       <ProTypeList />
     </div>
+
+    
     <scroll class="content" ref="scroll" :probe-type="3" :pull-up-load="true" @scroll="contentScroll" @pullingUp="loadMore">
       <div class="pro-content-list">
-        <RecommendList />
+        <RecommendList @refreshScroll="refreshScroll" />
       </div>
     </scroll>
   </div>
@@ -39,6 +41,14 @@ export default {
     //加载更多
     loadMore() {
       // this.getHomeGoods(this.currentType);
+    },
+    // 刷新
+    refreshScroll() {
+      console.log(789);
+      this.$nextTick(() => {
+        console.log(4564);
+        this.$refs.scroll.refresh();
+      });
     }
   }
 };
