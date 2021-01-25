@@ -3,10 +3,10 @@ import { getQrCode, scanCode } from "@/api";
 import store from "../store/index";
 
 router.beforeEach((to, from, next) => {
-  const { shopUuid, code } = to.query;
+  const { shopUuid, code, uuid } = to.query;
   console.log(shopUuid);
   if (!store.state.userInfo && !code) {
-    login();
+    login(shopUuid, uuid);
   }
 
   if (code) {
@@ -29,10 +29,11 @@ router.beforeEach((to, from, next) => {
 });
 
 // 登陆
-function login() {
+function login(shopUuid, uuid) {
   const params = {
     url: location.pathname,
-    uuid: store.state.shopUuid
+    shopUuid,
+    uuid
   };
   getQrCode(params).then(res => {
     console.log(res);
