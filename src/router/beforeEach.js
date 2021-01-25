@@ -17,6 +17,7 @@ router.beforeEach((to, from, next) => {
     const params = {
       code
     };
+
     scanCode(params).then(res => {
       if (res.state == 100) {
         store.commit("SET_USER_INFO", res.items);
@@ -24,7 +25,6 @@ router.beforeEach((to, from, next) => {
       }
     });
   }
-
   next();
 });
 
@@ -35,6 +35,7 @@ function login(shopUuid, uuid) {
     shopUuid,
     uuid
   };
+
   getQrCode(params).then(res => {
     console.log(res);
     if (res.state == 100) {
