@@ -76,7 +76,7 @@
 
 <script>
 import TopNavBar from "./components/TopNavBar.vue";
-import { getProOne, getFileList, reCollection, collection } from "@/api";
+import { getProOne, getFileList, reCollection, collection, clickPrtAddOne } from "@/api";
 import RecommendList from "./components/RecommendList.vue";
 export default {
   name: "ProductDetails",
@@ -108,6 +108,15 @@ export default {
   },
 
   methods: {
+    clickPrtAddOne() {
+      const params = {
+        uuid: this.info.uuid
+      };
+      clickPrtAddOne(params).then(res => {
+        console.log(res);
+      });
+    },
+
     getProOne() {
       const data = {
         uuid: this.uuid

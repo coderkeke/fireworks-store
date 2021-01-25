@@ -5,7 +5,7 @@
       <TopNavBar />
     </div>
     <!-- 轮播图 -->
-    <Swipe typeName="deShopCarousel"/>
+    <Swipe typeName="deShopCarousel" />
     <!-- 搜索 -->
     <SearchBox />
     <!-- 图片展示 -->
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { shopAddOne } from "@/api";
 import TopNavBar from "./components/TopNavBar.vue";
 import Swipe from "@/components/common/Swipe.vue";
 import SearchBox from "./components/SearchBox.vue";
@@ -31,7 +32,19 @@ export default {
     RecommendList
   },
   mounted() {},
-  methods: {}
+  created() {
+    this.shopAddOne();
+  },
+  methods: {
+    shopAddOne() {
+      const params = {
+        uuid: this.$store.state.shopUuid
+      };
+      shopAddOne(params).then(res => {
+        console.log(res);
+      });
+    }
+  }
 };
 </script>
 

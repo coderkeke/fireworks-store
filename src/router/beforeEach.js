@@ -4,7 +4,7 @@ import store from "../store/index";
 
 router.beforeEach((to, from, next) => {
   const { shopUuid, code, uuid } = to.query;
-  console.log(shopUuid);
+
   if (!store.state.userInfo && !code) {
     login(shopUuid, uuid);
   }

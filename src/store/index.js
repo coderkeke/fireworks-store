@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    shopUuid: "33b95da4324e4c10a87ce1de186e6307",
+    shopUuid: "",
     proActive: null,
     userInfo: null,
     // 微信code

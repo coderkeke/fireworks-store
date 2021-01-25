@@ -96,3 +96,20 @@ export function collection(params) {
     params
   });
 }
+
+//  公众号《《产品点击量》》查看详情调用此接口增加点击量
+export function clickPrtAddOne(params) {
+  return request({
+    url: "/web/v1/prt/product/appData/clickPrtAddOne",
+    method: "POST",
+    params
+  });
+}
+
+export function shopAddOne(params) {
+  return request({
+    url: "/web/v1/shop/Shop/appData/addOne",
+    method: "get",
+    params
+  });
+}
