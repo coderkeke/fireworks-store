@@ -4,7 +4,7 @@ import store from "../store/index";
 
 router.beforeEach((to, from, next) => {
   const { shopUuid, code } = to.query;
-
+  console.log(shopUuid);
   if (!store.state.userInfo && !code) {
     login();
   }
@@ -14,7 +14,6 @@ router.beforeEach((to, from, next) => {
       code
     };
     scanCode(params).then(res => {
-      console.log("1111", res);
       if (res.state == 100) {
         store.commit("SET_USER_INFO", res.items);
         localStorage.setItem("appUser", res.items.uuid);
