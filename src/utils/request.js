@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "../store";
 let baseURL = "";
 if (process.env.NODE_ENV === "development") {
   // 编译环境
@@ -22,6 +23,9 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
+    if (store.state.userInfo && store.state.userInfo.uuid) {
+      config.headers["appUser"] = store.state.userInfo.uuid;
+    }
     return config;
   },
   error => {
@@ -44,7 +48,6 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    const headers = response.headers;
     const res = response.data;
     // if the custom code is not 20000, it is judged as an error.
     return res;

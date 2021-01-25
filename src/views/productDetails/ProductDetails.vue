@@ -99,6 +99,14 @@ export default {
     this.getProOne();
   },
 
+  watch: {
+    $route() {
+      const { uuid } = this.$route.query;
+      this.uuid = uuid;
+      this.getProOne();
+    }
+  },
+
   methods: {
     getProOne() {
       const data = {
@@ -132,6 +140,8 @@ export default {
 
     handleFn(type) {
       this.likColl = type;
+      // this.reCollection();
+      // this.collection();
     },
 
     // 删除

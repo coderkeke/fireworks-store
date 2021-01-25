@@ -7,7 +7,7 @@
             <van-image radius="5" fit="cover" width="130" height="130" :src="imgUrl" />
           </div>
           <div class="item-content">
-            <div class="shou-cang">
+            <div v-if="info.isColl == 1" class="shou-cang">
               <img src="../../assets/img/shoucang.png" alt="" />
             </div>
             <span class="prt-title">{{ info.prtName }}</span>
@@ -116,7 +116,7 @@ export default {
         display: flex;
 
         .item-content {
-          width: 100%;
+          width: 191px;
           display: flex;
           flex-direction: column;
           margin-left: 20px;
@@ -129,8 +129,8 @@ export default {
             top: 0;
             right: 0;
             & > img {
-              width: 20px;
-              height: 20px;
+              width: 14px;
+              height: 15px;
             }
           }
 
@@ -141,6 +141,7 @@ export default {
           }
 
           .prt-title {
+            width: 170px;
             font-size: 13px;
             color: #000000;
             margin: 0 0 8px;

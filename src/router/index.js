@@ -70,7 +70,8 @@ const routes = [
   {
     path: "/productDetails",
     meta: {
-      isNavigation: false
+      isNavigation: false,
+      noKeep: true
     },
     name: "ProductDetails",
     component: () => import("@v/productDetails/ProductDetails.vue")

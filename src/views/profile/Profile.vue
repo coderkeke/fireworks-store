@@ -4,7 +4,8 @@
     <div class="body">
       <div class="head-img-box">
         <img :src="$store.state.userInfo && $store.state.userInfo.headimgurl" alt="" />
-        <span>微信头像</span>
+        <span v-if="$store.state.userInfo">{{ $store.state.userInfo.nickname }}</span>
+        <span v-else>微信头像</span>
       </div>
       <div @click="goProList(1)" class="item">
         <div class="item-left">

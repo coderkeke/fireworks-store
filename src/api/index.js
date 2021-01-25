@@ -80,18 +80,19 @@ export function getFootprint(params) {
   });
 }
 // 删除喜欢
-export function reCollection(data) {
+export function reCollection(params) {
   return request({
     url: "/web/v1/prt/product/appData/reCollection",
     method: "POST",
-    data
+    params
   });
 }
+
 // 收藏喜欢
-export function collection(data) {
+export function collection(params) {
   return request({
     url: "/web/v1/prt/product/appData/collection",
     method: "POST",
-    data
+    params
   });
 }

@@ -3,24 +3,33 @@ import { getQrCode, scanCode } from "@/api";
 import store from "../store/index";
 
 router.beforeEach((to, from, next) => {
-  if (!store.state.userInfo && !to.query.code) {
+  const { shopUuid, code } = to.query;
+
+  if (!store.state.userInfo && !code) {
     login();
   }
 
-  if (to.query.code) {
+  if (code) {
     const params = {
-      code: to.query.code
+      code
     };
-    // scanCode(params).then(res => {
-    //   if (res.state == 100) {
-    //     store.commit("SET_USER_INFO", res.items);
-    //   }
-    // });
+    scanCode(params).then(res => {
+      console.log("1111", res);
+      if (res.state == 100) {
+        store.commit("SET_USER_INFO", res.items);
+        localStorage.setItem("appUser", res.items.uuid);
+      }
+    });
+  }
+
+  if (shopUuid) {
+    store.commit("SET_SHOP_UUID", shopUuid);
   }
 
   next();
 });
 
+// 登陆
 function login() {
   const params = {
     url: location.pathname,
