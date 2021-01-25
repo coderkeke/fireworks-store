@@ -11,11 +11,11 @@ router.beforeEach((to, from, next) => {
     const params = {
       code: to.query.code
     };
-    scanCode(params).then(res => {
-      if (res.state == 100) {
-        store.commit("SET_USER_INFO", res.items);
-      }
-    });
+    // scanCode(params).then(res => {
+    //   if (res.state == 100) {
+    //     store.commit("SET_USER_INFO", res.items);
+    //   }
+    // });
   }
 
   next();
