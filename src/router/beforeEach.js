@@ -5,6 +5,10 @@ import store from "../store/index";
 router.beforeEach((to, from, next) => {
   const { shopUuid, code, uuid } = to.query;
 
+  if (shopUuid) {
+    store.commit("SET_SHOP_UUID", shopUuid);
+  }
+
   if (!store.state.userInfo && !code) {
     login(shopUuid, uuid);
   }
@@ -19,10 +23,6 @@ router.beforeEach((to, from, next) => {
         localStorage.setItem("appUser", res.items.uuid);
       }
     });
-  }
-
-  if (shopUuid) {
-    store.commit("SET_SHOP_UUID", shopUuid);
   }
 
   next();
