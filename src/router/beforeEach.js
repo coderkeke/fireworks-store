@@ -30,7 +30,7 @@ function login() {
     console.log(res);
     if (res.state == 100) {
       let { url } = res.items;
-      // window.location.href = url;
+      window.location.href = url;
     }
   });
 }
