@@ -4,7 +4,7 @@
       <img @click="goBack(1)" width="28px" height="28px" src="~@/assets/img/videoPlay/back.png" alt="" />
     </template>
     <template #title>
-      <img class="home-logo" src="@/assets/img/home/homeLogo.png" alt="" />
+      <img class="home-logo" :src="$store.state.headUrl" alt="" />
     </template>
     <template #right>
       <img @click="goBack(2)" width="28px" height="28px" src="~@/assets/img/videoPlay/home.png" alt="" />

@@ -7,6 +7,8 @@ if (process.env.NODE_ENV === "development") {
 } else {
   if (location.origin == "https://app.tuomaimai.com") {
     baseURL = "https://supershop.tuomaimai.com";
+  } else if (location.origin == "https://app.simplego.top") {
+    baseURL = "https://ht.simplego.top";
   } else {
     baseURL = location.origin;
   }

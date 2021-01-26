@@ -4,7 +4,7 @@ import store from "../store/index";
 
 router.beforeEach((to, from, next) => {
   const { shopUuid, code, uuid } = to.query;
-
+  console.log("1111", to.query);
   if (shopUuid) {
     store.commit("SET_SHOP_UUID", shopUuid);
   }

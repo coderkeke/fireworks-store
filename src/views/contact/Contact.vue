@@ -31,7 +31,7 @@
     <!--  -->
     <div class="footer">
       <div class="footer-contant">
-        <img class="contant-img" src="@/assets/img/home/homeLogo.png" alt="" />
+        <img class="contant-img" :src="$store.state.headUrl" alt="" />
         <span class="contant-text">浏阳市恒天飞鹰烟花制造有限公司</span>
         <span class="contant-text"> 地址：澄潭江镇和家村</span>
         <span class="contant-text">电话：15575958599 </span>

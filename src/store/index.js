@@ -9,7 +9,9 @@ export default new Vuex.Store({
     proActive: null,
     userInfo: null,
     // 微信code
-    code: null
+    code: null,
+    // 头部log路径
+    headUrl: ""
   },
   mutations: {
     SET_SHOP_UUID: (state, shopUuid) => {
@@ -23,6 +25,9 @@ export default new Vuex.Store({
     },
     SET_USER_CODE: (state, code) => {
       state.code = code;
+    },
+    SET_HEADE_URL: (state, headUrl) => {
+      state.headUrl = headUrl;
     }
   },
   actions: {},

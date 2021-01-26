@@ -4,7 +4,7 @@
       <img @click="goAllProList" class="home-left" src="@/assets/img/home/homLeft.png" alt="" />
     </template>
     <template #title>
-      <img class="home-logo" src="@/assets/img/home/homeLogo.png" alt="" />
+      <img class="home-logo" :src="$store.state.headUrl" alt="" />
     </template>
     <template #right>
       <img @click="goProfile" class="home-right" src="@/assets/img/home/homeUser.png" alt="" />
